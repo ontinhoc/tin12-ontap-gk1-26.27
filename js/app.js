@@ -6,6 +6,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  window.appLoaded = true;
   // Trạng thái ứng dụng (Application State)
   const state = {
     currentExamIndex: 0,
@@ -395,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (q.type === "multiple_choice") {
         const studentChoice = state.answers[q.id] || null;
         const isCorrect = studentChoice === q.correctAnswer;
-        const earned = isCorrect ? (q.point !== undefined ? q.point : 0.3) : 0.0;
+        const earned = isCorrect ? (q.point != null ? q.point : 0.3) : 0.0;
         p1Points += earned;
 
         evaluationResults.push({
@@ -408,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
           correctAnswer: q.correctAnswer,
           isCorrect: isCorrect,
           earnedPoints: earned,
-          maxPoints: q.point !== undefined ? q.point : 0.3,
+          maxPoints: q.point != null ? q.point : 0.3,
           explanation: q.explanation || ""
         });
       }

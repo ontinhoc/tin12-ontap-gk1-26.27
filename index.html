@@ -196,6 +196,18 @@
 
   <!-- Scripts -->
   <script src="js/data.js"></script>
+  <script>
+    // Tự động nạp dự phòng nếu data.js bị tải ở thư mục gốc
+    if (!window.EXAM_CONFIG) {
+      document.write('<script src="data.js"><\/script>');
+    }
+  </script>
   <script src="js/app.js"></script>
+  <script>
+    // Tự động nạp dự phòng nếu app.js bị tải ở thư mục gốc
+    if (!window.appLoaded) {
+      document.write('<script src="app.js"><\/script>');
+    }
+  </script>
 </body>
 </html>
