@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function initApp() {
     // 1. Phục hồi chỉ số đề thi từ bộ nhớ trình duyệt (nếu có)
     const savedExamIndex = localStorage.getItem("tin12_saved_exam_index");
-    if (savedExamIndex !== null && window.EXAM_CONFIG && EXAM_CONFIG.examList) {
+    if (savedExamIndex !== null && typeof EXAM_CONFIG !== "undefined" && EXAM_CONFIG.examList) {
       state.currentExamIndex = parseInt(savedExamIndex, 10) % EXAM_CONFIG.examList.length;
     } else {
       state.currentExamIndex = 0;
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedClass) studentClassInput.value = savedClass;
 
     // 3. Khởi tạo danh sách chọn đề thi từ EXAM_CONFIG
-    if (window.EXAM_CONFIG && Array.isArray(EXAM_CONFIG.examList)) {
+    if (typeof EXAM_CONFIG !== "undefined" && Array.isArray(EXAM_CONFIG.examList)) {
       selectExam.innerHTML = "";
       EXAM_CONFIG.examList.forEach((exam) => {
         const option = document.createElement("option");
@@ -84,11 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("tin12_saved_exam_index", state.currentExamIndex);
     });
 
-    if (window.EXAM_CONFIG) {
+    if (typeof EXAM_CONFIG !== "undefined") {
       document.getElementById("intro-title").textContent = EXAM_CONFIG.title;
       document.getElementById("intro-subject").textContent = EXAM_CONFIG.subject;
       document.getElementById("intro-time").textContent = EXAM_CONFIG.durationMinutes;
-      const totalQ = (EXAM_CONFIG.examStructure.part1Count || 24) + (EXAM_CONFIG.examStructure.part2Count || 4);
+      const totalQ = (EXAM_CONFIG.examStructure.part1Count || 20) + (EXAM_CONFIG.examStructure.part2Count || 4);
       document.getElementById("intro-count").textContent = totalQ;
     }
 

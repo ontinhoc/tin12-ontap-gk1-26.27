@@ -206,3 +206,9 @@ function getQuestionsForExam(examIndex) {
 
   return resultQuestions;
 }
+
+if (typeof window !== "undefined") {
+  window.EXAM_CONFIG = EXAM_CONFIG;
+  window.QUESTION_BANK = QUESTION_BANK;
+  window.getQuestionsForExam = getQuestionsForExam;
+}
